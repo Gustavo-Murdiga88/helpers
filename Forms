@@ -1,0 +1,13 @@
+// shorthand for print and get fields the forms when not using react hook form
+const myform = document.querySelector('form');
+myform.addEventListener('submit', (e) => {
+e.preventDefault();
+console.log(e);
+const formData = new FormData(e.target);
+const value = Object.fromEntries(formData.entries())
+console.log(...formData.entries());
+// ['teste2', ''] ['teste1', '']
+console.log(...formData);
+// ['teste2', ''] (2) ['teste1', '']
+console.log(value);
+})
