@@ -1,0 +1,18 @@
+export function decimal(value: string) {
+  let decimal = value
+    .replace(/(\D)/g, "")
+    .replace(/(^\b0)/, "")
+    .replace(/(\d)(\d{2})$/g, "$1,$2")
+    .replace(/(?=(\d{3})+(\D))\B/g, ".");
+
+  if (value.length < 5) {
+    decimal = decimal
+      .padStart(4, "0")
+      .replace(/(\d)(\d{2})$/g, "$1,$2")
+      .replace(/(^\b[1-9])+(\D)/, "0$1$2")
+      .replace(/(?=(\d{3})+(\D))\B/g, ".");
+  }
+  return decimal;
+}
+
+//https://regex101.com/r/kUW4Ug/1 tests
