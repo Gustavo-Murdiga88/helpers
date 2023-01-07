@@ -1,0 +1,12 @@
+const blob = new Blob(['olá,coração'], {type: 'application/octet-stream'});
+const url = URL.createObjectURL(blob);
+const text = document.createTextNode('Click aqui')
+const link = document.createElement('a');
+link.href = url;
+link.setAttribute('download', 'blob.csv');
+link.style.backgroundColor='blue',
+link.appendChild(text);
+const div = document.getElementById('div');
+div.appendChild(link);
+link.click()
+setTimeout(() => {div.removeChild(link)},200)
