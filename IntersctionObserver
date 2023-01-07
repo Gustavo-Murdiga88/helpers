@@ -1,0 +1,25 @@
+function onObserverCallback(element){
+      console.log(element)
+
+      //função utilizada para deixar de ouvir o elemento;
+      observer.unobserve(document.querySelector('#container'));
+  }  
+
+  const observer = new IntersectionObserver(onObserverCallback,{
+    // delemita a view que será scrollada esta prop pode ser null;
+    root: document.querySelector('#box'),
+    // delimita as margins da viewport com isso podemos             
+		//identificar qual o melhor momento para realizar a chamada     
+		//da função que está anteriormente;
+    rootMargin: "100px 10px 500px 10px",
+    // % de visibilidade do compoenete que será observado.
+    threshold: [0.05]
+  });
+  
+  // Componente que é observado pela função, deve sempre estar     
+	// dento do seu componente root
+  observer.observe(document.querySelector('#container'));
+
+
+	// Documents
+	// https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/unobserve
