@@ -1,0 +1,21 @@
+type InputProps<T extends FieldValues = {}> = ComponentProps<
+  typeof InputComponent
+> &
+  Omit<
+    ComponentProps<typeof FormField>,
+    "labelFor" | "errorMessage" | "isInvalid" | "labelFor"
+  > & {
+    control: Control<T>;
+    defaultValue?: any;
+    name: FieldPath<T>;
+  };
+
+export function Input<T extends Record<string, any>>({
+  id,
+  label,
+  control,
+  name,
+  defaultValue,
+  placeholder,
+  ...props
+}: InputProps<T>) {
