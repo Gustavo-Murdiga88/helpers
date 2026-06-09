@@ -34,22 +34,21 @@ log_warning() {
 }
 
 # Diretório base
-BASE_DIR="/home/remessa-online/projects"
+BASE_DIR="/Users/gustavomurdiga/projects"
 
-# Lista de projetos e suas respectivas branches
-declare -A PROJECTS=(
-    ["biome"]="main"
-    ["gerenciamentodeversao"]="main"
-    ["gm-eslint-config"]="main"
-    ["grpc"]="main"
-    ["ig-wedding"]="main"
-    ["mono-repo"]="main"
-    ["plataforma_back"]="main"
-    ["novo_jmenergy_front"]="prod"
-    ["novo_jmenergy_back"]="main"
-    ["portfolio"]="main"
-    ["sandbox"]="main"
-
+# Lista de projetos e suas respectivas branches (formato "projeto:branch")
+PROJECTS=(
+    "biome:main"
+    "gerenciadordeversao:main"
+    "gm-eslint-config:main"
+    "grpc:main"
+    "ig-wedding:main"
+    "mono-repo:main"
+    "plataforma_back:main"
+    "novo_jmenergy_front:prod"
+    "novo_jmenergy_back:main"
+    "portfolio:main"
+    "sandbox:main"
 )
 
 log "🚀 Iniciando atualização de todos os projetos..."
@@ -62,8 +61,9 @@ successful_updates=0
 failed_updates=0
 
 # Loop através de todos os projetos
-for project in "${!PROJECTS[@]}"; do
-    branch="${PROJECTS[$project]}"
+for entry in "${PROJECTS[@]}"; do
+    project="${entry%%:*}"
+    branch="${entry##*:}"
     project_path="$BASE_DIR/$project"
     
     log "📂 Processando projeto: $project (branch: $branch)"
